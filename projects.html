@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Projects - Muh Reza Aldi Irawan</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Add Google Fonts link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #8b5cf6;
+            --accent-color: #06b6d4;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-card: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --font-primary: 'Space Grotesk', sans-serif;
+            --font-secondary: 'Poppins', sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --text-primary: #f9fafb;
+            --text-secondary: #d1d5db;
+            --bg-primary: #111827;
+            --bg-secondary: #1f2937;
+            --bg-card: #374151;
+            --border-color: #4b5563;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .navbar {
+            background: rgba(17, 24, 39, 0.95);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            color: var(--primary-color);
+            background: var(--bg-secondary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 8rem 0 4rem;
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+            opacity: 0.8;
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%236366f1" fill-opacity="0.03"><circle cx="30" cy="30" r="1"/></g></svg>');
+            opacity: 0.4;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 4rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 25px;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Project Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .project-card.hidden {
+            display: none;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: var(--bg-secondary);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tag {
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .link-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .link-primary:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .link-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .link-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--bg-secondary);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer p {
+            color: var(--text-secondary);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-primary);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: var(--shadow-lg);
+                border: 1px solid var(--border-color);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filters {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 0.5rem;
+            }
+
+            .page-title {
+                font-size: 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">Muh Reza Aldi Irawan</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#experience">Experience</a></li>
+                    <li><a href="projects.html" class="active">All Projects</a></li>
+                    <li><a href="index.html#skills">Skills</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <div class="nav-controls">
+                    <button class="theme-toggle" onclick="toggleTheme()">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <a href="index.html" class="back-link fade-in">
+                <i class="fas fa-arrow-left"></i>
+                Back to Home
+            </a>
+            <h1 class="page-title fade-in">All Projects</h1>
+            <p class="page-subtitle fade-in">
+                A comprehensive showcase of my work across web development, mobile applications, APIs, and machine learning projects
+            </p>
+        </div>
+    </header>
+
+    <!-- Filters -->
+    <section class="container">
+        <div class="filters fade-in">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="web">Web Development</button>
+            <button class="filter-btn" data-filter="api">API & Backend</button>
+            <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+            <button class="filter-btn" data-filter="ml">Machine Learning</button>
+            <button class="filter-btn" data-filter="cms">CMS & Admin</button>
+            <button class="filter-btn" data-filter="automation">Automation</button>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="container">
+        <div class="projects-grid">
+            <!-- Featured Projects (from main page) -->
+            <div class="project-card fade-in" data-category="web cms">
+                <img src="images/kalla.png" alt="Customer Relationship Platform" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Customer Relationship Platform</h3>
+                    <p class="project-description">
+                        A comprehensive CRM platform with features for lead management, sales tracking, and customer analytics. Includes WhatsApp integration for sending messages and bulk messaging using Baileys and WhatsApp Web.js.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag" style="background:#e0f2fe; color:#0284c7;">Express</span>
+                        <span class="project-tag" style="background:#dcfce7; color:#16a34a;">Node.js</span>
+                        <span class="project-tag" style="background:#fef9c3; color:#ca8a04;">MySQL</span>
+                        <span class="project-tag" style="background:#f0f9ff; color:#0369a1;">Laravel</span>
+                        <span class="project-tag" style="background:#f0f9ff; color:#0369a1;">REST API</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/MuhRezaAldiIrawan/Customer-Relation-Dashboard" class="project-link link-primary" target="_blank">
+                            <i class="fab fa-github"></i>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" data-category="web ml">
+                <img src="images/nusantara.png" alt="CCTV Analytics" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">CCTV Monitoring & Analytics</h3>
+                    <p class="project-description">
+                        Advanced web dashboard for monitoring and analyzing CCTV systems using Python Flask framework with machine learning capabilities for real-time analytics and computer vision processing.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag" style="background:#f0f9ff; color:#0369a1;">Laravel</span>
+                        <span class="project-tag" style="background:#fef9c3; color:#ca8a04;">Flask Python</span>
+                        <span class="project-tag" style="background:#f0fdfa; color:#0d9488;">Machine Learning</span>
+                        <span class="project-tag" style="background:#f0f9ff; color:#0369a1;">Computer Vision</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/MuhRezaAldiIrawan/AssetManagement-NI" class="project-link link-primary" target="_blank">
+                            <i class="fab fa-github"></i>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" data-category="api">
+                <img src="images/api.png" alt="REST API Service" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Microservices REST API</h3>
+                    <p class="project-description">
+                        Enterprise-grade microservices architecture with authentication, rate limiting, and comprehensive API documentation using Swagger. Built with Node.js, Express, Redis, and MongoDB.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag" style="background:#dcfce7; color:#16a34a;">TypeScript</span>
+                        <span class="project-tag" style="background:#ede9fe; color:#6d28d9;">MongoDB</span>
+                        <span class="project-tag" style="background:#fee2e2; color:#dc2626;">Redis</span>
+                        <span class="project-tag" style="background:#f0f9ff; color:#0369a1;">Docker</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link link-secondary">
+                            <i class="fas fa-lock"></i>
+                            Private Repo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" data-category="cms">
+                <img src="images/strapi.png" alt="CMS Strapi" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Headless CMS with Strapi</h3>
+                    <p class="project-description">
+                        Modern content management system for managing website content, including pages, posts, and media. Built with Node.js, Strapi, and integrated with Next.js frontend.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag" style="background:#dcfce7; color:#16a34a;">JavaScript</span>
+                        <span class="project-tag" style="background:#ede9fe; color:#6d28d9;">MySQL</span>
+                        <span class="project-tag" style="background:#f0f9ff; color:#0369a1;">Strapi</span>
+                        <span class="project-tag" style="background:#f0f9ff; color:#0369a1;">Next.js</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/MuhRezaAldiIrawan/Nextjs-Strapi-WebBlog" class="project-link link-primary" target="_blank">
+                            <i class="fab fa-github"></i>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" data-category="web cms">
+                <img src="images/filament.png" alt="Car Shop" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Car Dealership Management System</h3>
+                    <p class="project-description">
+                        Modern car dealership management system with Laravel and Filament admin panel. Features inventory management, customer management, responsive catalog, and user role management.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag" style="background:#f0f9ff; color:#0369a1;">Laravel</span>
+                        <span class="project-tag" style="background:#dcfce7; color:#16a34a;">Filament</span>
+                        <span class="project-tag" style="background:#ede9fe; color:#6d28d9;">MySQL</span>
+                        <span class="project-tag" style="background:#f0f9ff; color:#0369a1;">Bootstrap</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/MuhRezaAldiIrawan/CarShop-laravelFilament" class="project-link link-primary" target="_blank">
+                            <i class="fab fa-github"></i>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" data-category="automation">
+                <img src="images/telegeram.png" alt="Student Reports Bot" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Student Reports Telegram Bot</h3>
+                    <p class="project-description">
+                        Automated student reporting system with Telegram bot integration for report delivery and submissions. Features automated notifications, report generation, and real-time updates.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag" style="background:#f0f9ff; color:#0369a1;">Laravel</span>
+                        <span class="project-tag" style="background:#dcfce7; color:#16a34a;">Telegram API</span>
+                        <span class="project-tag" style="background:#ede9fe; color:#6d28d9;">MySQL</span>
+                        <span class="project-tag" style="background:#fef9c3; color:#ca8a04;">REST API</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/MuhRezaAldiIrawan/Student-Report" class="project-link link-primary" target="_blank">
+                            <i class="fab fa-github"></i>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Projects -->
+            <div class="project-card fade-in" data-category="web">
+                <img src="https://via.placeholder.com/400x200/6366f1/ffffff?text=E-Commerce+Platform" alt="E-Commerce Platform" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">E-Commerce Platform</h3>
+                    <p class="project-description">
+                        Full-featured e-commerce platform with payment gateway integration, inventory management, order tracking, and comprehensive admin dashboard. Built with Laravel and Vue.js.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag" style="background:#f0f9ff; color:#0369a1;">Laravel</span>
+                        <span class="project-tag" style="background:#dcfce7; color:#16a34a;">Vue.js</span>
+                        <span class="project-tag" style="background:#ede9fe; color:#6d28d9;">MySQL</span>
+                        <span class="project-tag" style="background:#fef9c3; color:#ca8a04;">Payment Gateway</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link link-secondary">
+                            <i class="fas fa-eye"></i>
+                            Coming Soon
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" data-category="mobile">
+                <img src="https://via.placeholder.com/400x200/8b5cf6/ffffff?text=Task+Manager+App" alt="Task Manager App" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Task Manager Mobile App</h3>
+                    <p class="project-description">
+                        Cross-platform mobile application for task management with real-time synchronization, offline support, and team collaboration features. Built with React Native and Node.js backend.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag" style="background:#dcfce7; color:#16a34a;">React Native</span>
+                        <span class="project-tag" style="background:#f0f9ff; color:#0369a1;">Node.js</span>
+                        <span class="project-tag" style="background:#ede9fe; color:#6d28d9;">MongoDB</span>
+                        <span class="project-tag" style="background:#fee2e2; color:#dc2626;">Socket.io</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link link-secondary">
+                            <i class="fas fa-mobile-alt"></i>
+                            In Development
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" data-category="api">
+                <img src="https://via.placeholder.com/400x200/06b6d4/ffffff?text=GraphQL+API" alt="GraphQL API" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">GraphQL API Gateway</h3>
+                    <p class="project-description">
+                        Modern GraphQL API gateway with authentication, real-time subscriptions, and data federation from multiple microservices. Built with Node.js, Apollo Server, and Redis.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag" style="background:#dcfce7; color:#16a34a;">GraphQL</span>
+                        <span class="project-tag" style="background:#f0f9ff; color:#0369a1;">Apollo Server</span>
+                        <span class="project-tag" style="background:#ede9fe; color:#6d28d9;">PostgreSQL</span>
+                        <span class="project-tag" style="background:#fee2e2; color:#dc2626;">Redis</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link link-secondary">
+                            <i class="fas fa-lock"></i>
+                            Private Repo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" data-category="ml">
+                <img src="https://via.placeholder.com/400x200/f59e0b/ffffff?text=ML+Prediction+System" alt="ML Prediction System" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Sales Prediction ML System</h3>
+                    <p class="project-description">
+                        Machine learning system for sales forecasting using historical data, seasonal patterns, and market indicators. Built with Python, scikit-learn, and deployed with Flask.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag" style="background:#fef9c3; color:#ca8a04;">Python</span>
+                        <span class="project-tag" style="background:#f0fdfa; color:#0d9488;">scikit-learn</span>
+                        <span class="project-tag" style="background:#ede9fe; color:#6d28d9;">Pandas</span>
+                        <span class="project-tag" style="background:#f0f9ff; color:#0369a1;">Flask</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link link-secondary">
+                            <i class="fas fa-chart-line"></i>
+                            In Development
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" data-category="web">
+                <img src="https://via.placeholder.com/400x200/10b981/ffffff?text=School+Management" alt="School Management System" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">School Management System</h3>
+                    <p class="project-description">
+                        Comprehensive school management platform with student enrollment, grade tracking, teacher management, and parent portal. Built with Laravel and integrated payment system.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag" style="background:#f0f9ff; color:#0369a1;">Laravel</span>
+                        <span class="project-tag" style="background:#dcfce7; color:#16a34a;">jQuery</span>
+                        <span class="project-tag" style="background:#ede9fe; color:#6d28d9;">MySQL</span>
+                        <span class="project-tag" style="background:#f0f9ff; color:#0369a1;">Bootstrap</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link link-secondary">
+                            <i class="fas fa-school"></i>
+                            Coming Soon
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" data-category="automation">
+                <img src="https://via.placeholder.com/400x200/ef4444/ffffff?text=Data+Scraper" alt="Data Scraping Tool" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Web Scraping & Data Pipeline</h3>
+                    <p class="project-description">
+                        Automated web scraping tool with data cleaning, transformation, and storage pipeline. Handles large-scale data extraction with rate limiting and proxy rotation.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag" style="background:#fef9c3; color:#ca8a04;">Python</span>
+                        <span class="project-tag" style="background:#f0fdfa; color:#0d9488;">Selenium</span>
+                        <span class="project-tag" style="background:#ede9fe; color:#6d28d9;">BeautifulSoup</span>
+                        <span class="project-tag" style="background:#fee2e2; color:#dc2626;">Celery</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link link-secondary">
+                            <i class="fas fa-spider"></i>
+                            Private Tool
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" data-category="web cms">
+                <img src="https://via.placeholder.com/400x200/8b5cf6/ffffff?text=Portfolio+CMS" alt="Portfolio CMS" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Portfolio Content Management</h3>
+                    <p class="project-description">
+                        Dynamic portfolio CMS allowing easy content updates, project showcases, and blog management. Built with Next.js and Sanity CMS for seamless content editing.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag" style="background:#dcfce7; color:#16a34a;">Next.js</span>
+                        <span class="project-tag" style="background:#f0f9ff; color:#0369a1;">Sanity CMS</span>
+                        <span class="project-tag" style="background:#ede9fe; color:#6d28d9;">TypeScript</span>
+                        <span class="project-tag" style="background:#f0f9ff; color:#0369a1;">Tailwind CSS</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link link-secondary">
+                            <i class="fas fa-briefcase"></i>
+                            In Development
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" data-category="api">
+                <img src="https://via.placeholder.com/400x200/f59e0b/ffffff?text=Payment+Gateway" alt="Payment Gateway API" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Payment Gateway Integration</h3>
+                    <p class="project-description">
+                        Secure payment processing API with multi-gateway support, fraud detection, and comprehensive transaction management. Integrates with major payment providers.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag" style="background:#dcfce7; color:#16a34a;">Node.js</span>
+                        <span class="project-tag" style="background:#f0f9ff; color:#0369a1;">Express</span>
+                        <span class="project-tag" style="background:#fee2e2; color:#dc2626;">Stripe API</span>
+                        <span class="project-tag" style="background:#ede9fe; color:#6d28d9;">MongoDB</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link link-secondary">
+                            <i class="fas fa-credit-card"></i>
+                            Enterprise
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" data-category="mobile">
+                <img src="https://via.placeholder.com/400x200/10b981/ffffff?text=Weather+App" alt="Weather Forecast App" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Weather Forecast Mobile App</h3>
+                    <p class="project-description">
+                        Beautiful weather application with location-based forecasts, weather alerts, and historical data visualization. Built with Flutter and integrated with multiple weather APIs.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag" style="background:#dcfce7; color:#16a34a;">Flutter</span>
+                        <span class="project-tag" style="background:#f0f9ff; color:#0369a1;">Dart</span>
+                        <span class="project-tag" style="background:#fef9c3; color:#ca8a04;">Weather API</span>
+                        <span class="project-tag" style="background:#ede9fe; color:#6d28d9;">SQLite</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link link-secondary">
+                            <i class="fas fa-cloud-sun"></i>
+                            Coming Soon
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" data-category="ml">
+                <img src="https://via.placeholder.com/400x200/ef4444/ffffff?text=Image+Recognition" alt="Image Recognition System" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">AI Image Recognition System</h3>
+                    <p class="project-description">
+                        Advanced image recognition system using deep learning for object detection, classification, and facial recognition. Built with TensorFlow and deployed with Docker.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag" style="background:#fef9c3; color:#ca8a04;">Python</span>
+                        <span class="project-tag" style="background:#f0fdfa; color:#0d9488;">TensorFlow</span>
+                        <span class="project-tag" style="background:#ede9fe; color:#6d28d9;">OpenCV</span>
+                        <span class="project-tag" style="background:#fee2e2; color:#dc2626;">Docker</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link link-secondary">
+                            <i class="fas fa-eye"></i>
+                            Research Project
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 style="margin-bottom: 3rem; font-size: 2rem; color: var(--text-primary);">Project Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Completed Projects</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Technologies Mastered</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Years of Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Muh Reza Aldi Irawan. All rights reserved. Built with passion for clean code.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.querySelector('.theme-toggle i');
+
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                themeToggle.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme
+        document.addEventListener('DOMContentLoaded', function () {
+            const savedTheme = localStorage.getItem('theme');
+            const themeToggle = document.querySelector('.theme-toggle i');
+
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                themeToggle.className = 'fas fa-sun';
+            }
+        });
+
+        // Project Filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active filter button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                // Filter projects
+                projectCards.forEach(card => {
+                    const categories = card.getAttribute('data-category') || '';
+                    
+                    if (filterValue === 'all' || categories.includes(filterValue)) {
+                        card.classList.remove('hidden');
+                        card.style.display = 'block';
+                    } else {
+                        card.classList.add('hidden');
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function () {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+
+</html>
